@@ -1,14 +1,11 @@
 <?php
 
 include '../components/connect.php';
+include '../components/auth.php';
 
-session_start();
+require_admin();
 
-$admin_id = $_SESSION['admin_id'];
-
-if(!isset($admin_id)){
-   header('location:admin_login.php');
-}
+$admin_id = current_admin_id();
 
 if(isset($_POST['submit'])){
 

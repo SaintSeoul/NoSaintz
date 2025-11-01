@@ -1,15 +1,14 @@
 <?php
 
 include '../components/connect.php';
+include '../components/auth.php';
 
-session_start();
+// ensure admin is logged in and authorized
+require_admin();
 
-$admin_id = $_SESSION['admin_id'];
+$admin_id = current_admin_id();
 
-if(!isset($admin_id)){
-   header('location:admin_login.php');
-}
-
+?>
 ?>
 
 <!DOCTYPE html>

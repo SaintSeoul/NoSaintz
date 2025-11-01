@@ -1,22 +1,24 @@
 <?php
 
 include '../components/connect.php';
+include '../components/auth.php';
 
-session_start();
+require_admin();
 
-$admin_id = $_SESSION['admin_id'];
-
-if(!isset($admin_id)){
-   header('location:admin_login.php');
-}
+$admin_id = current_admin_id();
 
 if(isset($_POST['update_payment'])){
    $order_id = $_POST['order_id'];
-   $payment_status = $_POST['payment_status'];
+   // guard against missing payment_status (e.g., disabled selected option)
+   $payment_status = $_POST['payment_status'] ?? '';
    $payment_status = filter_var($payment_status, FILTER_SANITIZE_STRING);
-   $update_payment = $conn->prepare("UPDATE `orders` SET payment_status = ? WHERE id = ?");
-   $update_payment->execute([$payment_status, $order_id]);
-   $message[] = 'payment status updated!';
+   if(!empty($payment_status)){
+      $update_payment = $conn->prepare("UPDATE `orders` SET payment_status = ? WHERE id = ?");
+      $update_payment->execute([$payment_status, $order_id]);
+      $message[] = 'payment status updated!';
+   }else{
+      $message[] = 'please select a payment status to update.';
+   }
 }
 
 if(isset($_GET['delete'])){
@@ -68,7 +70,7 @@ if(isset($_GET['delete'])){
       <form action="" method="post">
          <input type="hidden" name="order_id" value="<?= $fetch_orders['id']; ?>">
          <select name="payment_status" class="select">
-            <option selected disabled><?= $fetch_orders['payment_status']; ?></option>
+            <option selected value="<?= htmlspecialchars($fetch_orders['payment_status']); ?>"><?= $fetch_orders['payment_status']; ?></option>
             <option value="pending">Pending</option>
             <option value="completed">Completed</option>
          </select>

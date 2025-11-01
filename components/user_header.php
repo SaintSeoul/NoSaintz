@@ -1,9 +1,14 @@
 <?php
+   if(session_status() === PHP_SESSION_NONE) session_start();
+
+   // ensure $user_id is set from session to avoid undefined variable warnings
+   $user_id = $_SESSION['user_id'] ?? '';
+
    if(isset($message)){
-      foreach($message as $message){
+      foreach($message as $m){
          echo '
          <div class="message">
-            <span>'.$message.'</span>
+            <span>'.$m.'</span>
             <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
          </div>
          ';
@@ -27,13 +32,19 @@
 
       <div class="icons">
          <?php
-            $count_wishlist_items = $conn->prepare("SELECT * FROM `wishlist` WHERE user_id = ?");
-            $count_wishlist_items->execute([$user_id]);
-            $total_wishlist_counts = $count_wishlist_items->rowCount();
+            // If user not logged in, avoid running queries — show zero counts
+            if(!empty($user_id)){
+               $count_wishlist_items = $conn->prepare("SELECT * FROM `wishlist` WHERE user_id = ?");
+               $count_wishlist_items->execute([$user_id]);
+               $total_wishlist_counts = $count_wishlist_items->rowCount();
 
-            $count_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
-            $count_cart_items->execute([$user_id]);
-            $total_cart_counts = $count_cart_items->rowCount();
+               $count_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+               $count_cart_items->execute([$user_id]);
+               $total_cart_counts = $count_cart_items->rowCount();
+            }else{
+               $total_wishlist_counts = 0;
+               $total_cart_counts = 0;
+            }
          ?>
          <div id="menu-btn" class="fas fa-bars"></div>
          <a href="search_page.php"><i class="fas fa-search"></i>Search</a>
@@ -43,26 +54,28 @@
       </div>
 
       <div class="profile">
-         <?php          
-            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
-            $select_profile->execute([$user_id]);
-            if($select_profile->rowCount() > 0){
-            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         <?php
+            if(!empty($user_id)){
+               $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+               $select_profile->execute([$user_id]);
+               if($select_profile->rowCount() > 0){
+               $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          ?>
          <p><?= $fetch_profile["name"]; ?></p>
          <a href="update_user.php" class="btn">Update Profile.</a>
          <div class="flex-btn">
             <a href="user_register.php" class="option-btn">Register.</a>
-            <a href="user_login.php" class="option-btn">Login.</a>
+            <a href="login.php" class="option-btn">Login.</a>
          </div>
          <a href="components/user_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
          <?php
+               }
             }else{
          ?>
          <p>Please Login Or Register First to proceed !</p>
          <div class="flex-btn">
             <a href="user_register.php" class="option-btn">Register</a>
-            <a href="user_login.php" class="option-btn">Login</a>
+            <a href="login.php" class="option-btn">Login</a>
          </div>
          <?php
             }
