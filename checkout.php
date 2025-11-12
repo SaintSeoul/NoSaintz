@@ -64,6 +64,7 @@ if(isset($_POST['order'])){
 <body>
    
 <?php include 'components/user_header.php'; ?>
+<?php include 'components/config.php'; ?>
 
 <section class="checkout-orders">
 
@@ -83,7 +84,7 @@ if(isset($_POST['order'])){
                $total_products = implode($cart_items);
                $grand_total += ($fetch_cart['price'] * $fetch_cart['quantity']);
       ?>
-         <p> <?= $fetch_cart['name']; ?> <span>(<?= '$'.$fetch_cart['price'].'/- x '. $fetch_cart['quantity']; ?>)</span> </p>
+               <p> <?= $fetch_cart['name']; ?> <span>(<span><?php echo CURRENCY; ?></span><?= $fetch_cart['price']; ?>/- x <?= $fetch_cart['quantity']; ?>)</span> </p>
       <?php
             }
          }else{
@@ -92,15 +93,15 @@ if(isset($_POST['order'])){
       ?>
          <input type="hidden" name="total_products" value="<?= $total_products; ?>">
          <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
-         <div class="grand-total">Grand Total : <span>Nrs.<?= $grand_total; ?>/-</span></div>
+         <div class="grand-total">Grand Total : <span><?php echo CURRENCY; ?><?= $grand_total; ?><span>/-</span></span></div>
       </div>
 
-      <h3>place your orders</h3>
+      <h3>Place Your Order</h3>
 
       <div class="flex">
          <div class="inputBox">
-            <span>Tapaiko subh nam :</span>
-            <input type="text" name="name" placeholder="enter your name" class="box" maxlength="20" required>
+            <span>Your Full Name :</span>
+            <input type="text" name="name" placeholder="enter your full name" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
             <span>Your Number :</span>
@@ -111,7 +112,7 @@ if(isset($_POST['order'])){
             <input type="email" name="email" placeholder="enter your email" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>kasari halnuhunx paisa? :</span>
+            <span>Mode of Payment :</span>
             <select name="method" class="box" required>
                <option value="cash on delivery">Cash On Delivery</option>
                <option value="credit card">Credit Card</option>
@@ -129,15 +130,15 @@ if(isset($_POST['order'])){
          </div>
          <div class="inputBox">
             <span>City :</span>
-            <input type="text" name="city" placeholder="Kathmandu" class="box" maxlength="50" required>
+            <input type="text" name="city" placeholder="Seoul" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
             <span>Province:</span>
-            <input type="text" name="state" placeholder="Bagmati" class="box" maxlength="50" required>
+            <input type="text" name="state" placeholder="Seoul" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
             <span>Country :</span>
-            <input type="text" name="country" placeholder="Nepal" class="box" maxlength="50" required>
+            <input type="text" name="country" placeholder="South Korea" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
             <span>ZIP CODE :</span>
@@ -145,7 +146,7 @@ if(isset($_POST['order'])){
          </div>
       </div>
 
-      <input type="submit" name="order" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>" value="place order">
+   <input type="submit" name="order" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>" value="Place Order">
 
    </form>
 

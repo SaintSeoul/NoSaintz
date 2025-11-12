@@ -3,6 +3,8 @@
 include '../components/connect.php';
 include '../components/auth.php';
 
+include '../components/config.php';
+
 // ensure admin is logged in and authorized
 require_admin();
 
@@ -51,7 +53,7 @@ $admin_id = current_admin_id();
                }
             }
          ?>
-         <h3><span>WON.</span><?= $total_pendings; ?><span>/-</span></h3>
+         <h3><?php echo CURRENCY; ?><?= $total_pendings; ?><span>/-</span></h3>
          <p>Total pendings</p>
          <a href="placed_orders.php" class="btn">See Orders.</a>
       </div>
@@ -67,7 +69,7 @@ $admin_id = current_admin_id();
                }
             }
          ?>
-         <h3><span>WON.</span><?= $total_completes; ?><span>/-</span></h3>
+         <h3><?php echo CURRENCY; ?><?= $total_completes; ?><span>/-</span></h3>
          <p>Completed orders</p>
          <a href="placed_orders.php" class="btn">See orders</a>
       </div>

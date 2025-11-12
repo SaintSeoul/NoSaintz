@@ -20,8 +20,8 @@
 
       <div class="box">
          <h3>Contact Us.</h3>
-         <a href="tel:9800000000"><i class="fas fa-phone"></i> +977 980 78217</a>
-         <a href="tel:9900000000"><i class="fas fa-phone"></i> +977 974 89512</a>
+         <a href="tel:+821012345678"><i class="fas fa-phone"></i> +82 10 1234 5678</a>
+         <a href="tel:+821098765432"><i class="fas fa-phone"></i> +82 10 9876 5432</a>
          <a href="mailto:harshchy143@gmail.com"><i class="fas fa-envelope"></i> OneTrueNoSaintz</a>
          <a href="https://www.google.com/myplace"><i class="fas fa-map-marker-alt"></i> Seoul, South Korea </a>
       </div>

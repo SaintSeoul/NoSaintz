@@ -30,6 +30,7 @@ if(isset($_SESSION['user_id'])){
 <body>
    
 <?php include 'components/user_header.php'; ?>
+<?php include 'components/config.php'; ?>
 
 <section class="orders">
 
@@ -54,7 +55,7 @@ if(isset($_SESSION['user_id'])){
       <p>Address : <span><?= $fetch_orders['address']; ?></span></p>
       <p>Payment Method : <span><?= $fetch_orders['method']; ?></span></p>
       <p>Your orders : <span><?= $fetch_orders['total_products']; ?></span></p>
-      <p>Total price : <span>Nrs.<?= $fetch_orders['total_price']; ?>/-</span></p>
+   <p>Total price : <span><?php echo CURRENCY; ?><?= $fetch_orders['total_price']; ?>/-</span></p>
       <p> Payment status : <span style="color:<?php if($fetch_orders['payment_status'] == 'pending'){ echo 'red'; }else{ echo 'green'; }; ?>"><?= $fetch_orders['payment_status']; ?></span> </p>
    </div>
    <?php

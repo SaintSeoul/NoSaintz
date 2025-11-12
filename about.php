@@ -99,7 +99,7 @@ Stay True. Stay NoSaintz.
 
       <div class="swiper-slide slide">
          <img src="images/wiz.jpg" alt="">
-         <p>nosaintz is great if you choose good sellers . A variety of required item available . Customers can return and refund full amount within 7 days easily . Nosaintz is boosting eCommerce business in Kathmandu.It provides great opportunity to sale items online with ease.</p>
+         <p>nosaintz is great if you choose good sellers. A wide variety of items are available. Customers can return and receive a full refund within 7 days easily. NoSaintz is helping eCommerce grow in Seoul and across South Korea. It provides a great opportunity for sellers to sell items online with ease.</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>

@@ -46,6 +46,7 @@ if(isset($_GET['delete'])){
 <body>
 
 <?php include '../components/admin_header.php'; ?>
+<?php include '../components/config.php'; ?>
 
 <section class="orders">
 
@@ -65,7 +66,7 @@ if(isset($_GET['delete'])){
       <p> Number : <span><?= $fetch_orders['number']; ?></span> </p>
       <p> Address : <span><?= $fetch_orders['address']; ?></span> </p>
       <p> Total products : <span><?= $fetch_orders['total_products']; ?></span> </p>
-      <p> Total price : <span>Nrs.<?= $fetch_orders['total_price']; ?>/-</span> </p>
+   <p> Total price : <span><?php echo CURRENCY; ?><?= $fetch_orders['total_price']; ?>/-</span> </p>
       <p> Payment method : <span><?= $fetch_orders['method']; ?></span> </p>
       <form action="" method="post">
          <input type="hidden" name="order_id" value="<?= $fetch_orders['id']; ?>">
