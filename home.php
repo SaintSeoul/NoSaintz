@@ -23,6 +23,9 @@ include 'components/config.php';
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>NoSaintz</title>
 
+   <!-- favicon -->
+   <link rel="icon" type="image/png" sizes="64x64" href="images/home-bg-1.png">
+
    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
    
    <!-- font awesome cdn link  -->

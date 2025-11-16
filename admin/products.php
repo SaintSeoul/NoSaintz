@@ -91,6 +91,9 @@ if(isset($_GET['delete'])){
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Products</title>
 
+   <!-- favicon -->
+   <link rel="icon" type="image/png" sizes="64x64" href="../images/home-bg-1.png">
+
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <link rel="stylesheet" href="../css/admin_style.css">
